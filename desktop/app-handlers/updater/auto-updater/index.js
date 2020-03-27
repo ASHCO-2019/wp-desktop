@@ -91,7 +91,9 @@ class AutoUpdater extends Updater {
 			window.close()
 		}
 
+		// Ref: https://github.com/electron-userland/electron-builder/issues/4143#issuecomment-521850797
 		autoUpdater.quitAndInstall();
+		app.quit();
 
 		bumpStat( 'wpcom-desktop-update', `${getStatsString( this.beta )}-confirm` );
 	}
