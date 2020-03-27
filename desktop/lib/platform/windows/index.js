@@ -3,9 +3,7 @@
 /**
  * External Dependencies
  */
-const electron = require( 'electron' );
-const Tray = electron.Tray;
-const Menu = electron.Menu;
+const { Tray, Menu, app } = require( 'electron' );
 const debug = require( 'debug' )( 'platform:windows' );
 
 /**

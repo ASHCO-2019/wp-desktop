@@ -3,7 +3,7 @@
 /**
  * External Dependencies
  */
-const { app } = require( 'electron' );
+const { app, BrowserWindow } = require( 'electron' );
 const { autoUpdater } = require( 'electron-updater' )
 const debug = require( 'debug' )( 'desktop:updater:auto' );
 
@@ -82,6 +82,15 @@ class AutoUpdater extends Updater {
 
 	onConfirm() {
 		AppQuit.allowQuit();
+
+		// Ref: https://github.com/electron-userland/electron-builder/issues/1604
+		app.removeAllListeners( 'window-all-closed' );
+		const windows = BrowserWindow.getAllWindows();
+		for ( let i = 0; i < windows.length; i++ ) {
+			const window = windows[i];
+			window.close()
+		}
+
 		autoUpdater.quitAndInstall();
 
 		bumpStat( 'wpcom-desktop-update', `${getStatsString( this.beta )}-confirm` );

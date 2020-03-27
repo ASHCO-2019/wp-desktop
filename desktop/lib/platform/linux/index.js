@@ -20,11 +20,6 @@ function LinuxPlatform( mainWindow ) {
 		mainWindow.focus();
 	} );
 
-	app.on( 'window-all-closed', function() {
-		debug( 'All windows closed, shutting down' );
-		app.quit();
-	} );
-
 	mainWindow.on( 'close', function( ev ) {
 		app.quit();
 	} );
