@@ -92,6 +92,7 @@ class AutoUpdater extends Updater {
 		}
 
 		// Ref: https://github.com/electron-userland/electron-builder/issues/4143#issuecomment-521850797
+		app.autoInstallOnAppQuit = true;
 		autoUpdater.quitAndInstall();
 		app.quit();
 
